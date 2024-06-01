@@ -610,7 +610,7 @@ label {
   height: 10px;
 }
 
-@media (max-height: 700px) {
+/*@media (max-height: 700px) {
   .sidebar__editor--version {
     padding: 50px 20px;
   }
@@ -622,7 +622,7 @@ label {
   .sidebar.active {
     width: 100% !important;
   }
-}
+}*/
 
 .main {
   width: 100%;

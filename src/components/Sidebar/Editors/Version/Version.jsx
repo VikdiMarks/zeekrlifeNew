@@ -1,34 +1,16 @@
 import logo from "../../../../assets/img/auto-1.png";
 import Card from "./Card";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { versions } from "../../../../data/versions";
 
-function Version({ activeTab }) {
-  const versions = [
-    {
-      name: 'версия "YOU"',
-      desc: "Флагман производительности",
-      currentPrice: "349,000р",
-      oldPrice: "386,000р",
-      id: 1,
-    },
-    {
-      name: 'версия "ME"',
-      desc: "Флагман производительности",
-      currentPrice: "449,000р",
-      oldPrice: "336,000р",
-      id: 2,
-    },
-    {
-      name: 'версия "WE"',
-      desc: "Флагман производительности",
-      currentPrice: "249,000р",
-      oldPrice: "366,000р",
-      id: 3,
-    },
-  ];
+function Version({ activeTab, switchBgImg }) {
   const tab = "tab1";
   const [activeVersion, setActiveVersion] = useState(1);
   const switchVersion = (id) => setActiveVersion(id);
+
+  useEffect(() => {
+    switchBgImg(versions.find((item) => item.id === activeVersion).img);
+  }, [activeVersion, activeTab]);
 
   return (
     <div

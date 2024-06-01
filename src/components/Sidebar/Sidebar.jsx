@@ -13,7 +13,7 @@ import Interior from "./Editors/Interior/Interior";
 import Optional from "./Editors/Optional/Optional";
 import Software from "./Editors/Software/Software";
 
-function Sidebar({ sidebarSwitch, sidebarView }) {
+function Sidebar({ sidebarSwitch, sidebarView, switchBgImg }) {
   const sidebarMenuItems = [
     {
       img: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAACE4AAAhOAFFljFgAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAOJSURBVHgB7dxtTttAEAbgGTtR+5MjpDegJ2h6AnoE0yZSMJWAE5CcoEGCEImkCSdoewLSG3ADOAK/KijE21mbSigYEn/Fa/t9JBCECMGOd3Y8uwkRAAAAAAAAAAAAAAAAAAAAZIIpJa2dXUVAo9OTSGNqEeQKAcgZApCzGmVnRkr9pjJj/iCfm5RAdgGQwR8NB10qsVbH7UoQmpRAljOgkp5Wg6tURFgDcpZ4Bjj7+xvWnzuHIJbYAWh1Ok1ie4vu7h2yrQ2CWCIF4P/VbtnWFiVc/cvBkkrPC76MWRGtFIDIVzvTpSLrkkpuNDyekS63KX5FtNoMYPti2VNk6b+xSM2Uso5Gp/4fBitIXobK1U4e/5q/rfXH/f4NQSSxAoCrPT2xAsBKHZ2V/C53XXAjljMEIGfG94Kkt6IrsCalQDFNx4OTbTJIZZpxUjhcz715j1LU6nxtEnlN/5vgRiyyCnVD+WA6HF5TqmTwmQ8pgWoEQHFvPDz+SQYyPgAPrA5q3vL2h0dew2KeLD6uU48MfpcMZXwApoPB0p6SbhLW7+4nYedi5mr+kQxWihRk395/kwqnEfKjDPL+6yp3Luhzx3WYyVl8XJecMhh9MlyhA+B0Og07pArJouTMSqEDUJc2uQx2Y/FxVry97tQTV2ED0HLdw7DB1yXn40ZJIRRyEXba7qYMdHfxcdNLzjCFC4DO+3XmH4slp96jML3kDFO4FGSTHZp6pPbrFSXvP1WoALRdd6/IJWeYwqQgnXrUC3nfpJIz6tHEwgTgseR81hOS7dFz+ScaLQnQst/xIMEyLU0VIgB+yalCWw0UtIPtlVrCllJ6M2ZKBjF+DfAPhYWknrIwegbovM9sT8x99d+ajibm5aWS0xTrO5qYk/HQ30A3ahM9bTiWkjMEIGfxAiCl3xd3d+JXKJBI7DWAlbQE2HbaO7vXc6V6sik+K2IvJm+JU5CuUvRphBrbV5gV0a0UAH5Q7+VO9Fy3fF99XjArLmRWXAWnxmCZlVLQ2Zl/NMTxXyN2+/eTXPF78v3mS88Panf/yN6MSmztRxOnwStgpvqjLbtSns370ojf4pAmWTUkP5oYew3Qs0JulJz5m/o7L2hyQQyJF2E9K74PB1OCWHAjljO8WUfKoh5NzC4AUhX4HcIyi1n5PJXlDGgmfS+dKsAakDMEIGcIAAAAAAAAAAAAAAAAAABk6B+bqTQKoNvctAAAAABJRU5ErkJggg==",
@@ -75,12 +75,24 @@ function Sidebar({ sidebarSwitch, sidebarView }) {
       </div>
 
       <div className={"sidebar__editor"}>
-        <Version activeTab={activeTab} />
-        <Color activeTab={activeTab} />
-        <Wheel activeTab={activeTab} />
-        <Interior currentMenu={activeTab} />
-        <Optional currentMenu={activeTab} />
-        <Software currentMenu={activeTab} />
+        {activeTab === "tab1" && (
+          <Version activeTab={activeTab} switchBgImg={switchBgImg} />
+        )}
+        {activeTab === "tab2" && (
+          <Color activeTab={activeTab} switchBgImg={switchBgImg} />
+        )}
+        {activeTab === "tab3" && (
+          <Wheel activeTab={activeTab} switchBgImg={switchBgImg} />
+        )}
+        {activeTab === "tab4" && (
+          <Interior currentMenu={activeTab} switchBgImg={switchBgImg} />
+        )}
+        {activeTab === "tab5" && (
+          <Optional currentMenu={activeTab} switchBgImg={switchBgImg} />
+        )}
+        {activeTab === "tab6" && (
+          <Software currentMenu={activeTab} switchBgImg={switchBgImg} />
+        )}
         <Footer />
       </div>
     </div>
