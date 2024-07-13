@@ -157,6 +157,7 @@ label {
 }
 
 .auto-view {
+  position: relative;
   width: 70%;
 
   transition: all 0.6s ease;
@@ -164,6 +165,87 @@ label {
 
 .auto-view.full {
   width: 100%;
+}
+
+.popup-models {
+  position: absolute;
+  display: none;
+
+  opacity: 0;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  z-index: 10;
+
+  transition: opacity 0.3s ease;
+}
+
+.popup-models.active {
+  display: block;
+  opacity: 1;
+}
+
+.popup-models--bg {
+  position: absolute;
+
+  background: rgba(241, 241, 243, 0.6);
+  backdrop-filter: blur(10px);
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  z-index: 11;
+}
+
+.popup-models__content {
+  position: absolute;
+  width: 30%;
+  padding-top: 40px;
+  padding-left: 40px;
+
+  background-color: #fff;
+
+  top: 0;
+  left: 0;
+  bottom: 0;
+
+  z-index: 11;
+}
+
+.popup-models__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-right: 30px;
+  margin-bottom: 40px;
+}
+
+.popup-models__header h3 {
+  font-size: 20px;
+}
+
+.popup-models__header img {
+  width: 19px;
+  height: 19px;
+
+  cursor: pointer;
+}
+
+.popup-models__body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.popup-models__body span {
+  font-size: 28px;
+  font-weight: 400;
 }
 
 /* Sidebar */
@@ -432,6 +514,8 @@ label {
   display: flex;
   align-items: center;
   column-gap: 20px;
+
+  cursor: pointer;
 }
 
 .header__btn--menu img {
