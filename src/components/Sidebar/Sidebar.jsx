@@ -59,7 +59,10 @@ function Sidebar({ sidebarSwitch, sidebarView, switchBgImg }) {
     setActivePriceList(false);
   };
 
-  const switchTab = (tab) => setActiveTab(tab);
+  const switchTab = (tab) => {
+    closePriceList();
+    setActiveTab(tab);
+  };
 
   return (
     <div className={"sidebar" + (sidebarView ? " active" : "")}>
