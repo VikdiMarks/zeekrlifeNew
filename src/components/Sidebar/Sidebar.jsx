@@ -12,6 +12,7 @@ import Wheel from "./Editors/Wheel/Wheel";
 import Interior from "./Editors/Interior/Interior";
 import Optional from "./Editors/Optional/Optional";
 import Software from "./Editors/Software/Software";
+import PriceList from "../PriceList";
 
 function Sidebar({ sidebarSwitch, sidebarView, switchBgImg }) {
   const sidebarMenuItems = [
@@ -49,6 +50,14 @@ function Sidebar({ sidebarSwitch, sidebarView, switchBgImg }) {
   const switchImg =
     "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC8AAABQCAYAAACJUyy4AAAACXBIWXMAACE4AAAhOAFFljFgAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAIeSURBVHgB7ZtLTsJQGEZbCo5dCjEmTnUHLMGBI0bsQJfAEtyCK8CxMcalOFWMtR+/phT6vv/rJpwRtPdxDtZqICTJiRODSbsG3C2X98WwxffZ7OZxvf5IHNEqvxPP04e/ke/eAhrlK+LlaFcBtfK14uUMNwFH8q3i5SwXARX5XuLlTPOAyf+D29XqvBBf9J6ZJ/Pp13azm2dE5ZWHyPRzuykezpO+GP4Ejq75mAJq7zaxBDTe52MIaP0L6z2g838bzwGd8sBrQC954DGgtzzwFjBIHngKGCwPvASMkgceAkbLA+uAIHlgGRAsD6wCWOSBRQCbPNAOYJUHmgHs8kArQEQeaASIyQPpAFF5IBkgLg+kAlTkgUSAmjzgDlCVB5wB6vKAK8BEHnAEmMmD0ABTeRASYC4Pxga4kAdjAiaJI9KBL6Wby2ZWfMqS55FdNmPFzX9hQ8RNb5Wh4vTUAA5xOqQMlzgdVoRTnE4pwS1OpxWQEKchwkiJ0zBBJMVpqBDS4jRcAA1xmsKMljhNY0RTnKYyoS1O0xmwEKclArESp2UCsBSnpUZiLU7LjcCDOC05EC/itOwAPInT0j3xJk7L98CjOG3RgVdx2qYFz+K0VQPexWm7GmIQpy0PiEWctt0jJnFQeX8+JnFQkc9/0qekL8biINt/8vb68nxxeZUWYtetsxyIg+zwQGeAE3GQ1R1sDHAkDrKmE0cBDr9e9wsrE82QpFArhwAAAABJRU5ErkJggg==";
   const [activeTab, setActiveTab] = useState("tab1");
+  const [activePriceList, setActivePriceList] = useState(false);
+
+  const openPriceList = () => {
+    setActivePriceList(true);
+  };
+  const closePriceList = () => {
+    setActivePriceList(false);
+  };
 
   const switchTab = (tab) => setActiveTab(tab);
 
@@ -67,6 +76,7 @@ function Sidebar({ sidebarSwitch, sidebarView, switchBgImg }) {
               id={item.id}
               activeTab={activeTab}
               switchTab={switchTab}
+              key={index}
             />
           ))}
         </nav>
@@ -75,6 +85,7 @@ function Sidebar({ sidebarSwitch, sidebarView, switchBgImg }) {
       </div>
 
       <div className={"sidebar__editor"}>
+        <PriceList close={closePriceList} isShow={activePriceList} />
         {activeTab === "tab1" && (
           <Version activeTab={activeTab} switchBgImg={switchBgImg} />
         )}
@@ -93,7 +104,7 @@ function Sidebar({ sidebarSwitch, sidebarView, switchBgImg }) {
         {activeTab === "tab6" && (
           <Software currentMenu={activeTab} switchBgImg={switchBgImg} />
         )}
-        <Footer />
+        <Footer openPriceList={openPriceList} />
       </div>
     </div>
   );
