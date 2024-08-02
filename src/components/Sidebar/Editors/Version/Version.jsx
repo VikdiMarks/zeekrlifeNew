@@ -2,15 +2,22 @@ import logo from "../../../../assets/img/auto-1.png";
 import Card from "./Card";
 import { useEffect, useState } from "react";
 import { versions } from "../../../../data/versions";
+import { useCars } from "../../../../stores/global";
 
 function Version({ activeTab, switchBgImg }) {
   const tab = "tab1";
   const [activeVersion, setActiveVersion] = useState(1);
-  const switchVersion = (id) => setActiveVersion(id);
+  const switchVersion = (id) => {
+    addCartVersion(versions.find((item) => item.id === id));
+    setActiveVersion(id);
+  };
+  const { addCartVersion } = useCars();
 
   useEffect(() => {
     switchBgImg(versions.find((item) => item.id === activeVersion).img);
+    addCartVersion(versions.find((item) => item.id === activeVersion));
   }, [activeVersion, activeTab]);
+  const { model } = useCars();
 
   return (
     <div
@@ -18,7 +25,7 @@ function Version({ activeTab, switchBgImg }) {
         "sidebar__editor--version" + (activeTab === tab ? "" : " hidden")
       }
     >
-      <img src={logo} alt="" />
+      <h1>{model.header}</h1>
       <span className="sidebar__editor--varsion__desc">
         доставка 1-4 недели
       </span>

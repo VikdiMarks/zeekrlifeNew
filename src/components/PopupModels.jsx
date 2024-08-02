@@ -1,26 +1,15 @@
 import xmark from "../assets/img/x-mark.png";
+import { useCars } from "../stores/global";
+import { useEffect } from "react";
+import { nanoid } from "nanoid";
+import { models } from "../data/models";
 
 export default function PopupModels({ show, close }) {
-  const data = [
-    {
-      header: "ZEEKR 001",
-    },
-    {
-      header: "ZEEKR 001 FR",
-    },
-    {
-      header: "ZEEKR 007",
-    },
-    {
-      header: "ZEEKR 009",
-    },
-    {
-      header: "ZEEKR 009 光辉",
-    },
-    {
-      header: "ZEEKR X",
-    },
-  ];
+  const { model, setModel } = useCars();
+
+  useEffect(() => {
+    setModel(models[0]);
+  }, []);
 
   return (
     <div className={"popup-models" + (show ? " active" : "")}>
@@ -31,8 +20,16 @@ export default function PopupModels({ show, close }) {
           <img onClick={close} src={xmark} alt="" />
         </div>
         <div className="popup-models__body">
-          {data.map((item, i) => (
-            <span onClick={close} key={i}>
+          {models.map((item, i) => (
+            <span
+              onClick={() => {
+                console.log("model", model, item);
+                setModel(item);
+                close();
+              }}
+              className={item.id === model?.id ? "active" : ""}
+              key={i}
+            >
               {item.header}
             </span>
           ))}
