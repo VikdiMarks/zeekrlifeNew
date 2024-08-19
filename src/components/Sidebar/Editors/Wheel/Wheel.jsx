@@ -8,6 +8,7 @@ import wheel2 from "../../../../assets/img/wheel-2.png";
 import wheel3 from "../../../../assets/img/wheel-3.png";
 import wheel4 from "../../../../assets/img/wheel-4.png";
 import wheel5 from "../../../../assets/img/wheel-5.png";
+import { useCars } from "../../../../stores/global";
 
 function Wheel({ activeTab, switchBgImg }) {
   const tab = "tab3";
@@ -15,6 +16,7 @@ function Wheel({ activeTab, switchBgImg }) {
   // const selectedWheel = wheels.find((item) => item.id === activeWheel);
   const switchWheel = (id) => setActiveWheel(id);
   const [wheels, setWheels] = useState([]);
+  const { addCartOther } = useCars();
 
   useEffect(() => {
     getWheels().then((res) => {
@@ -47,6 +49,8 @@ function Wheel({ activeTab, switchBgImg }) {
 
   useEffect(() => {
     switchBgImg(wheels.find((item) => item.id === activeWheel)?.bg);
+
+    addCartOther(wheels.find((item) => item.id === activeWheel));
   }, [activeWheel, activeTab, wheels]);
 
   return (

@@ -4,7 +4,7 @@ import { useCars } from "../stores/global";
 
 export default function PriceList({ close, isShow }) {
   const [price, setPrice] = useState(0);
-  const { cart } = useCars();
+  const { cart, other } = useCars();
   const [data, setData] = useState([
     [
       {
@@ -12,39 +12,6 @@ export default function PriceList({ close, isShow }) {
         price: {
           text: 769000,
           number: true,
-        },
-      },
-    ],
-    [
-      {
-        header: "Lorem",
-        price: {
-          text: "Цена включена",
-          number: false,
-        },
-      },
-      {
-        header: "Lorem",
-        price: {
-          text: "Цена включена",
-          number: false,
-        },
-      },
-    ],
-    [
-      {
-        header: "Lorem",
-        price: {
-          text: "Цена включена",
-          number: false,
-        },
-      },
-      {
-        header: "Lorem",
-        price: {
-          text: 600,
-          number: true,
-          free: true,
         },
       },
     ],
@@ -109,6 +76,19 @@ export default function PriceList({ close, isShow }) {
               </div>
             </>
           ))}
+        {other.map((item, i) => (
+          <div key={i}>
+            <div className="price-list__list">
+              <div className="price-list__list-item version">
+                <p>{item.name}</p>
+                <p>
+                  <span>{item.price}</span>
+                </p>
+              </div>
+              <div className="price-list__separator"></div>
+            </div>
+          </div>
+        ))}
         <div className="price-list__list-item price-list__list-item--total">
           <p>Общая стоимость услуг</p>
           <p>{cart.price}р</p>

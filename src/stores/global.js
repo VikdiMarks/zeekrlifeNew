@@ -21,6 +21,7 @@ export const useCars = create((set, get) => ({
     },
     price: 0,
   },
+  other: [],
   setModel: (model) =>
     set((state) => ({
       cart: {
@@ -42,6 +43,48 @@ export const useCars = create((set, get) => ({
           parseFloat(state.cart.version.currentPrice) * 1000,
       },
     })),
+  addCartOther: (data) =>
+    set((state) => {
+      if (!data) return {};
+      let resPrice = state.cart.price;
+      const price = parseFloat(data.price);
+
+      const other = state.other.filter((item) => {
+        const isDupl = !!(
+          state.other.length > 0 &&
+          item.id.slice(0, item.id.length - 1) ===
+            data.id.slice(0, data.id.length - 1)
+        );
+
+        if (isDupl) {
+          resPrice -= isNaN(parseFloat(item.price))
+            ? 0
+            : parseFloat(item.price);
+        }
+
+        console.log(
+          isDupl,
+          state.other.find(
+            (item) =>
+              item.id.slice(0, item.id.length - 1) ===
+              data.id.slice(0, data.id.length - 1),
+          ),
+          state.other,
+          data,
+        );
+
+        return !isDupl;
+      });
+
+      return {
+        cart: {
+          ...state.cart,
+          price: isNaN(price) ? resPrice : resPrice + price,
+        },
+        other: [...other, data],
+      };
+    }),
+
   setCartPrice: (price) =>
     set((state) => ({ cart: { ...state.cart, price: price } })),
 }));

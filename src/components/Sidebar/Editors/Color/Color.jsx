@@ -12,12 +12,14 @@ import color4 from "../../../../assets/img/color-4.png";
 import color5 from "../../../../assets/img/color-5.png";
 import color6 from "../../../../assets/img/color-6.png";
 import color7 from "../../../../assets/img/color-7.png";
+import { useCars } from "../../../../stores/global";
 
 function Color({ activeTab, switchBgImg }) {
   const tab = "tab2";
   const [activeColor, setActiveColor] = useState("color1");
   const switchColor = (id) => setActiveColor(id);
   const [colors, setColors] = useState([]);
+  const { addCartOther } = useCars();
 
   useEffect(() => {
     getColors().then((res) => {
@@ -57,6 +59,9 @@ function Color({ activeTab, switchBgImg }) {
 
   useEffect(() => {
     switchBgImg(colors.find((item) => item.id === activeColor)?.bg);
+    console.log(colors.find((item) => item.id === activeColor));
+
+    addCartOther(colors.find((item) => item.id === activeColor));
   }, [activeColor, activeTab, colors]);
 
   return (

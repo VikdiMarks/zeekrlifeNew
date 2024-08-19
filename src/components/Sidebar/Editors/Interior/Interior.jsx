@@ -7,6 +7,7 @@ import interior3 from "../../../../assets/img/interior-3.png";
 import interior4 from "../../../../assets/img/interior-4.png";
 import imgYou from "../../../../assets/img/you.png";
 import { getInteriors } from "../../../../api/api";
+import { useCars } from "../../../../stores/global";
 
 function Interior({ currentMenu, switchBgImg }) {
   const tab = "tab4";
@@ -14,6 +15,7 @@ function Interior({ currentMenu, switchBgImg }) {
   // const selectedTab = interiors.find((item) => item.id === activeTab);
   const switchTab = (id) => setActiveTab(id);
   const [interiors, setInteriors] = useState([]);
+  const { addCartOther } = useCars();
 
   useEffect(() => {
     getInteriors().then((res) => {
@@ -42,6 +44,8 @@ function Interior({ currentMenu, switchBgImg }) {
 
   useEffect(() => {
     switchBgImg(interiors.find((item) => item.id === activeTab)?.bg);
+
+    addCartOther(interiors.find((item) => item.id === activeTab));
   }, [activeTab, currentMenu, interiors]);
 
   // console.log(tab, currentMenu);
