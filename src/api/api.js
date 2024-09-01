@@ -40,3 +40,9 @@ export async function getWheels() {
 
   return res.data;
 }
+
+export async function submitOrder(data) {
+  const res = await axiosInstance.get("/lead_form");
+
+  return res.data;
+}
